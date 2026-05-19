@@ -1,0 +1,42 @@
+{
+    "name": "logged-cloud/auth-client",
+    "description": "OAuth2 client for the logged.cloud family identity provider: a \"Continue with logged.cloud\" Socialite driver, seamless user provisioning, and role-change webhooks.",
+    "keywords": ["laravel", "oauth2", "socialite", "sso", "logged-cloud"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0 || ^12.0 || ^13.0",
+        "laravel/socialite": "^5.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0 || ^10.0 || ^11.0",
+        "pestphp/pest": "^3.0 || ^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LoggedCloud\\AuthClient\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LoggedCloud\\AuthClient\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "pest"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LoggedCloud\\AuthClient\\AuthClientServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
