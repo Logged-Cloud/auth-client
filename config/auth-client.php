@@ -7,8 +7,8 @@ return [
     | Identity provider
     |--------------------------------------------------------------------------
     |
-    | auth.logged.cloud is the family's OAuth2 server. The credentials below
-    | come from registering this app there with `php artisan register:client`.
+    | auth.logged.cloud is the family's OAuth2 server. Register your app at
+    | https://auth.logged.cloud/developer to mint the credentials below.
     |
     */
 
@@ -20,7 +20,24 @@ return [
 
     'redirect' => env('LOGGED_CLOUD_REDIRECT'),
 
-    'scopes' => ['profile'],
+    /*
+    |--------------------------------------------------------------------------
+    | Requested data scopes
+    |--------------------------------------------------------------------------
+    |
+    | Which user fields the access token unlocks on the userinfo endpoint.
+    | The user identifier is always returned; `name`, `email` and `role` are
+    | individually grantable. Match this list to the scopes you ticked for
+    | this app on the developer portal — narrower is better.
+    |
+    | Falls back to ['name', 'email', 'role'] if LOGGED_CLOUD_SCOPES is unset.
+    |
+    */
+
+    'scopes' => array_values(array_filter(array_map(
+        'trim',
+        explode(',', (string) env('LOGGED_CLOUD_SCOPES', 'name,email,role'))
+    ))),
 
     /*
     |--------------------------------------------------------------------------

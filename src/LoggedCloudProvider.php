@@ -25,11 +25,13 @@ class LoggedCloudProvider extends AbstractProvider implements ProviderInterface
     protected $usesPKCE = true;
 
     /**
-     * The default scope requested from the identity provider.
+     * The default scopes requested from the identity provider. Overridden
+     * per-app via LOGGED_CLOUD_SCOPES; this is the fallback if no config is
+     * loaded (e.g. in isolated tests).
      *
      * @var array<int, string>
      */
-    protected $scopes = ['profile'];
+    protected $scopes = ['name', 'email', 'role'];
 
     protected function baseUrl(): string
     {
